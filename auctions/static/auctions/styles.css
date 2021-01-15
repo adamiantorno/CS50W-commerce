@@ -1,0 +1,298 @@
+* {
+    padding: 0;
+    margin: 0; 
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-title {
+    color: rgb(0, 113, 235);
+    text-transform: uppercase;
+}
+
+.container {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.create-btn {
+    border: 1px solid transparent;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+/* Layout.html */
+
+#nav-top {
+    background: rgb(0, 113, 235);
+    top: 0;
+    width: 100%;
+    display: flex;
+    height: 70px;
+}
+
+#nav-top h1 {
+    color: #fff;
+    line-height: 70px;
+    padding: 0px 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.user-id {
+    color: #fff;
+    font-size: 14px;
+    line-height: 70px;
+    margin-top: 8px;
+}
+
+.nav {
+    display: flex;
+    margin: 0;
+    margin-left: auto;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    display: block;
+    line-height: 70px;
+    padding: 0 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transition: all ease-in-out 200ms;
+    color: #fff;
+  }
+
+
+/* Index.html  */
+
+form[class=cat-form] p {
+    margin: 0;
+}
+
+.cat-btn {
+    border: 1px solid transparent;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px 12px;
+    height: 30px;
+}
+
+.listing {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.img--preview {
+    padding: 30px;
+    width: 250px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.img--preview img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.info {
+    padding: 30px;
+    position: relative;
+    width: 100%;
+    background: rgba(0, 113, 235, 0.2);
+}
+
+.time {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    text-align: right;
+    width: 150px;
+}
+
+.info h6 {
+    font-size: 12px;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
+
+.info p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.desc {
+    width: 84%;
+}
+
+.detail__btn {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    color: rgb(0, 113, 235);
+    background: #fff;
+}
+
+.detail__btn:hover {
+    transform: scale(1.05);
+}
+
+.detail__btn:focus {
+    color: rgb(255, 110, 110);
+    background: #fff;
+    outline: none;
+}
+
+/* Create.html */
+
+.create {
+    background: rgb(243, 243, 243);
+    padding: 12px;
+}
+
+.btn-submit {
+    color: #fff;
+    background-color: rgb(0, 113, 235);
+    border-color: rgb(0, 113, 235);
+}
+
+.btn-submit:hover {
+    color: #fff;
+    background-color: rgb(0, 91, 189);
+    text-decoration: none;
+}
+
+label {
+    color: rgb(0, 113, 235);
+}
+
+textarea {
+    vertical-align: top;
+    max-height: 150px;
+}
+
+img {
+    width: 100px;
+}
+
+/* Listing.html */
+
+.listing-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.small-info {
+   margin: 0; 
+}
+
+.listing-img {
+    padding: 25px;
+    width: 425px;
+    position: relative;
+    justify-content: center;
+    align-items: center;    
+}
+
+.listing-img img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.listing-details {
+    padding-left: 3em;
+}
+
+.watch-btn {
+    display: inline-block;
+    border: 1px solid transparent;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.watch-btn-add {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.watch-btn-add:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.watch-btn-remove {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.watch-btn-remove:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.userinputs {
+    padding-top: 10px;
+}
+
+.form-bid {
+    position: relative;
+}
+
+
+.bid-info ul {
+    list-style: none;
+    color: red;
+}
+
+.form-listing, .comment-info {
+    display: flex;
+    align-items: center;
+}
+
+.comment-block {
+    background: rgba(0, 113, 235, 0.25);
+    padding: 10px;
+    margin: 12px 0;
+    border-radius: 5px;
+}
+
+.comment-info {
+    margin-bottom: 5px;
+}
+
+.comment-info h5, .comment-info p {
+    color: rgb(0, 67, 138);
+}
+
+.comment-border {
+    display: flex;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 3px;
+    padding: 5px;
+}
+
+

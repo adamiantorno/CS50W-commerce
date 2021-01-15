@@ -1,0 +1,111 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    {{ object.title }}
+{% endblock  %}
+
+{% block body %}
+<div class="container">
+    
+    {% if object.is_active %}
+        <!-- Close if logged in user is creator -->
+        {% if object.creator == request.user %}
+        <div class="delete_details">
+            <a href="{% url 'close_bid' object.pk %}" role="button">Close Bid</a>
+            <p>Note* closing the bid will make the highest bidder the winner!</p>
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="closed-message">
+            {% if object.winner == request.user %}
+                <p>Congratulations! You won the auction for this item!</p>
+            {% else %}
+                <p>This listing is now closed.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+    <hr class="listing-bar">
+
+    <!-- Listing Info + Bidding & Watchlist -->
+    <div class="listing-info">
+        <div class="listing-img">
+            <img src="{{ object.image }}" alt="{{ object.title }}">
+        </div>
+        <div class="listing-details">
+            <h1>{{ object.title }}</h1>
+            <h4>{{ object.description }}</h4>
+            <p class="small-info">Creator: {{ object.creator }}</p>
+            <p class="small-info">{{ object.date_created}}</p>
+            {% if object.is_active %}
+            <div class=watchlist>
+                {% if on_watchlist %}
+                    <a href="{% url 'watch_update' object.pk %}" role="button" class="btn-submit watch-btn watch-btn-remove">Remove from Watchlist</a>
+                {% else %}
+                    <a href="{% url 'watch_update' object.pk %}" role="button" class="btn-submit watch-btn watch-btn-add">Add to Watchlist</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            <hr>
+            
+            {% if highest_bid %}
+                <h2>Current Highest Bid: ${{ highest_bid|floatformat:2 }}</h2>
+                <p class="small-info">There are currently {{ num_bids }} bid(s) for this item.</p>
+                {% if bidder == request.user %}
+                    <p class="small-info"><b>You are currently the highest bidder.</b></p>
+                {% else %}
+                    <p><b>You are not the highest bidder.</b></p>
+                {% endif %}
+            {% else %}    
+                <h2>Starting Bid: ${{ object.start_bid }}</h2>  
+                <p>There are currently 0 bids for this item.</p>
+            {% endif %}           
+            {% if object.is_active %}
+            <div class="userinputs">
+                <div class="bid">
+                    {% if bidform.errors %}
+                        {% for error in bidform.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form action="{% url 'listing' object.pk %}" method="POST" class="form-bid form-listing">
+                        {% csrf_token %}
+                        <div class="bid-info">
+                            {{ bidform.bid }}
+                        </div>
+                        <input type="submit" value="Submit" class="bid-btn btn btn-submit">
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    
+    <!-- Comment Section -->
+    {% if object.is_active %}
+    <h5 style="color: rgb(0, 113, 235);">Comments</h5>
+    <div class="comments">
+        <form action="{% url 'listing' object.pk %}" method="POST" class="form-listing">
+            {% csrf_token %}
+            {{ commentform }}
+            <input type="submit" value="Post" class="btn btn-submit btn-listing">
+        </form>
+        {% for comment in comments %}
+        <div class="comment-block">
+            <div class="comment-info">
+                <h5 class="small-info">{{ comment.user }} -</h5>
+                <p class="small-info">- {{ comment.timestamp }}</p>
+            </div>
+            <div class="comment-border">
+                <h5 class="small-info">{{ comment.comment }}</h5>
+            </div>
+        </div>
+        {% empty %}
+            <h3>No comments.</h3>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
